@@ -8,7 +8,7 @@ So how do we do this? Because the dataset did not contain any coordinates we fir
 
 By cloning this repository you can reproduce these steps for yourself in Postgis. 
 
-You do not want to work with Postgis? The [pre-processed dataset](/data/events_utrecht_2011_2016_location.csv) is available for you as well! Just download this and import this to Qgis, R or anything you like!
+You do not want to work with Postgis? The pre-processed dataset with location is available for you as [CSV](/data/events_utrecht_2011_2016_location.csv) or [GeoJSON](/data/events_utrecht_2011_2016_location.geojson)! Just download this and import this to Qgis, R or anything you like!
 
 **Good luck!**
 
