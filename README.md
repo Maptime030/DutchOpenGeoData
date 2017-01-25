@@ -12,8 +12,11 @@ You do not want to work with Postgis? The pre-processed dataset with location is
 
 **Good luck!**
 
+## Make a map with pdok Kaart
 
-## Geolocating location names:
+Go to [kaart.pdok.nl](kaart.pdok.nl)
+
+## Geolocating with the BAG
 
 #### 1. Excel to csv
 [The original excel file](data/Evenementenoverzicht 2011 t-m 2016.xlsx) has a tab sheet per year. Put all data into one sheet with the year as extra column. From year 2014 the columns for week and time are switched, correct this manually. By doing this the total dataset can be exported to a [working csv file](data/Evenementenoverzicht_2011_2016.csv). Saving as an csv only works for the active tab sheet. 
