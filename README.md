@@ -1,6 +1,6 @@
 # DIY Dutch Open Geo Data
 
-From Frank Verchoor we got an Excel file with all the events in Utrecht from 2011 to 2016. This events have a data, time and location. 
+From Frank Verchoor we got an [Excel file with all the events in Utrecht from 2011 to 2016](data/Evenementenoverzicht 2011 t-m 2016.xlsx). This events have a data, time and location. 
 
 **Let's map this!**
 
@@ -39,10 +39,13 @@ In [this script](sql_scripts/bag_adres.sql) you can see the steps we take to cre
 
 Export our table to a workable csv file for you to use! (or use the postgis database)
 
-	ogr2ogr postgis to csv.  
+	psql -h localhost -d database -U user -p port -f sql_scripts/export_csv.sql
+
 
 [The csv with coordinates](data/.csv) can be imported in Qgis for example. Download the file open Qgis and follow the following steps:
 
 Go to `Layer` > `Add Layer` > `Add Delimited Text File.. `
 
-![](image/csvimportqgis.png)
+Use the following settings: 
+
+![](image/screenshot_csv_Qgis.png)
