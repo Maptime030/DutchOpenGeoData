@@ -48,4 +48,4 @@ Go to `Layer` > `Add Layer` > `Add Delimited Text File.. `
 
 Use the following settings: 
 
-![](img/screenshot_csv_Qgis.png)
+![](img/Screenshot_csv_Qgis.png)
