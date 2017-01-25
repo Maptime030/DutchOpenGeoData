@@ -28,14 +28,14 @@ Now we need to download the BAG and put in the same database of Postgis with pg_
 
 	wget data.nlextract.nl/bag/postgis/bag-laatst.backup 
 
-	pg_restore --create --exit-on-error --verbose -h localhost -h localhost -d database -U user -p port -j `nproc` --no-owner --no-privileges bag-2016_10_13.backup
+	pg_restore --create --exit-on-error --verbose -h localhost -d database -U user -p port -j `nproc` --no-owner --no-privileges bag-2016_10_13.backup
 
 #### 4. Geocoding in PostGIS 
 We only need the adresses in Utrecht. Plus we need only one point per street because we do not have full adresses. There are 2 choices for this, either we take the centre of the adresses per street or the first GID of the street as our location point.
 
 In [this script](sql_scripts/bag_adres.sql) you can see the steps we take to create a table with all the information and the coordnates in RDnew and Lat Long. 
 
-	psql -h localhost -d $DB -U $USER -p $PORT-W -f sql_scirpts/bag_adres.sql
+	psql -h localhost -d database -U user -p port -f sql_scripts/bag_adres.sql
 
 Export our table to a workable csv file for you to use! (or use the postgis database)
 

@@ -1,3 +1,5 @@
+BEGIN;
+
 -- Create table with one point per openbareruimtenaam in Utrecht. Based on first GID number of the street. 
 DROP TABLE IF EXISTS bag_utrecht_first_gid CASCADE;
 CREATE TABLE bag_utrecht_first_gid AS
@@ -19,19 +21,29 @@ FROM bagactueel.adres
 WHERE gemeentenaam = 'Utrecht'
 GROUP BY openbareruimtenaam; 
 
+COMMIT;
+
+VACUUM ANALYZE bag_utrecht_centre_street;
+VACUUM ANALYZE bag_utrecht_first_gid;
+
+BEGIN;
 -- Join the events table to the BAG location points on openbareruimtenaam. 
+DROP TABLE IF EXISTS events_utrecht_2011_2016_location CASCADE;
+CREATE TABLE events_utrecht_2011_2016_location AS
 SELECT 
-	a.*,
+	e.*,
 	b.openbareruimtenaam,
 	ST_X(b.geopunt)::integer AS rdx,
 	ST_Y(b.geopunt)::integer AS rdy,
-	ST_X(ST_Transform(ST_SetSRID(ag.geopunt,28992),4326))::numeric(9,6) AS lon,
-	ST_Y(ST_Transform(ST_SetSRID(ag.geopunt,28992),4326))::numeric(9,6) AS lat
+	ST_X(ST_Transform(ST_SetSRID(b.geopunt,28992),4326))::numeric(9,6) AS lon,
+	ST_Y(ST_Transform(ST_SetSRID(b.geopunt,28992),4326))::numeric(9,6) AS lat
 FROM 
 	public.events_utrecht_2011_2016 AS e
 LEFT OUTER JOIN 
 	public.bag_utrecht_first_gid AS b
 ON 
 	e.location = b.openbareruimtenaam
-GROUP BY b.openbareruimtenaam, b.geopunt 
 ;
+
+COMMIT;
+VACUUM ANALYZE events_utrecht_2011_2016_location;
