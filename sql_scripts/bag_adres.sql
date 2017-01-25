@@ -42,7 +42,7 @@ FROM
 LEFT OUTER JOIN 
 	public.bag_utrecht_first_gid AS b
 ON 
-	e.location = b.openbareruimtenaam
+	lower(e.location) = lower(b.openbareruimtenaam)
 ;
 
 COMMIT;
